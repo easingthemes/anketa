@@ -11,14 +11,26 @@ const getBrowserConfig = (isHeadless) => {
   };
 };
 
-const handlePageClose = async (page, i) => {
+const chunkArray = (arr, chunkSize) => {
+  let i = 0;
+  const chunks = [];
+  const length = arr.length;
+
+  while (i < length) {
+    chunks.push(arr.slice(i, i += chunkSize));
+  }
+
+  return chunks;
+};
+
+const handlePageClose = async (page, browser, i) => {
   try {
     await page.close();
     console.log('PAGE: Page closed', i);
     await browser.close();
-    console.log('BROWSER: Browser closed');
+    console.log('BROWSER: Browser closed', i);
   } catch (error) {
-    console.error('ERROR: closing page ...', i);
+    console.error('ERROR: closing page', i);
   }
 
 };
@@ -45,7 +57,7 @@ const handlePage = async (vote, options, i) => {
     console.log('PAGE: loaded', i);
   } catch (error) {
     console.error('ERROR: opening page ...', i);
-    await handlePageClose(page, i);
+    await handlePageClose(page, browser,  i);
     return;
   }
 
@@ -55,7 +67,7 @@ const handlePage = async (vote, options, i) => {
     console.log('ELEMENT: choice Element clicked', i);
   } catch (error) {
     console.error('ERROR: clicking choice element ...', i);
-    await handlePageClose(page, i);
+    await handlePageClose(page, browser,  i);
     return;
   }
 
@@ -64,7 +76,7 @@ const handlePage = async (vote, options, i) => {
     console.log('ELEMENT: Submit Element clicked', i);
   } catch (error) {
     console.error('ERROR: clicking submit element ...', i);
-    await handlePageClose(page, i);
+    await handlePageClose(page, browser,  i);
     return;
   }
 
@@ -73,7 +85,7 @@ const handlePage = async (vote, options, i) => {
     console.log('ELEMENT: Response received', i);
   } catch (error) {
     console.error('ERROR: receiving response ...', i);
-    await handlePageClose(page, i);
+    await handlePageClose(page, browser,  i);
     return;
   }
 
@@ -82,12 +94,13 @@ const handlePage = async (vote, options, i) => {
     console.log('COOKIE: Cookie deleted', i);
   } catch (error) {
     console.error('ERROR: deleting cookie ...', i);
-    await handlePageClose(page, i);
+    await handlePageClose(page, browser,  i);
     return;
   }
 
-  await handlePageClose(page, i);
-  return;
+  await handlePageClose(page, browser,  i);
+
+  return i;
 };
 
 const init = async (vote, options) => {
@@ -101,12 +114,17 @@ const init = async (vote, options) => {
   process.setMaxListeners(options.limit + 2);
   console.log('NODEJS: ', process.version);
 
-  for (let i = 0; i < options.total; i++) {
-    const group = [...Array(options.limit).keys()];
-    await Promise.all(group.map(async () => {
+  const totalArr = [...Array(options.total).keys()];
+  const groups = chunkArray(totalArr, options.limit);
+
+  for (const group of groups) {
+    await Promise.all(group.map(async (i) => {
       await handlePage(vote, options, i);
     }));
   }
+  
+  console.log('NODEJS: exiting process ...');
+  process.exit(0);
 };
 
 module.exports = init;
