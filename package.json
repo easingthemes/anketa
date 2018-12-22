@@ -1,0 +1,28 @@
+{
+  "name": "@draganfilipovic/anketa",
+  "version": "1.0.0",
+  "description": "NodeJs script for totalpoll",
+  "author": "Dragan Filipovic",
+  "license": "Apache Licence 2.0",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:easingthemes/anketa.git"
+  },
+  "keywords": [
+    "anketa",
+    "totalpoll",
+    "headless"
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "anketa": "bin/cli.js"
+  },
+  "scripts": {
+    "cli": "node bin/cli ne",
+    "debug": "node $NODE_DEBUG_OPTION bin/cli ne"
+  },
+  "dependencies": {
+    "commander": "^2.19.0",
+    "puppeteer": "^1.11.0"
+  }
+}
