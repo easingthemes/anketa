@@ -18,6 +18,7 @@ anketa ne
 Usage: `anketa <vote> [options]`
 
 Options:
+```$xslt
   -V, --version              output the version number
   -u, --url [url]            Page url (default: "https://vozdovac.rs/anketa")
   -v, --votes [votes]        Number of votes, default 12 (default: 12)
@@ -27,6 +28,7 @@ Options:
   -c, --cookie [cookie]      Name of the cookie, default `tpc_1539354118305` (default: "tpc_1539354118305")
   -h, --headless [headless]  is browser headless, default true (default: true)
   -h, --help                 output usage information
-  
-The only required param is `vote`.
+```
+
+###The only required param is `vote`.
 
