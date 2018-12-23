@@ -24,12 +24,12 @@ npm i @draganfilipovic/anketa -g
 
 ## Run
 ```
-anketa ne -u https://vozdovac.rs/anketa
+anketa ne -u https://example.com/anketa
 ```
 
 ## Usage (without install)
 ```
-npx @draganfilipovic/anketa ne -u https://vozdovac.rs/anketa
+npx @draganfilipovic/anketa ne -u https://example.com/anketa
 ```
 
 ## How to use
