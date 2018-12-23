@@ -8,9 +8,18 @@ NodeJs v8+
 During first install additional time is needed in order to download Chromium.
 If you use it without install (with npx), Chromium will be downloaded each time.
 
+If you see a lot of errors when opening a page:
+```
+ERROR: opening page ... 14
+```
+Page is probably broken, so there is no response. Please stop script manually:
+```
+CTRL + c
+```
+
 ## Usage (without install)
 ```
-npx @draganfilipovic/anketa ne
+npx @draganfilipovic/anketa ne -u https://vozdovac.rs/anketa
 ```
 
 ## Install
@@ -20,7 +29,7 @@ npm i @draganfilipovic/anketa -g
 
 ## Run
 ```
-anketa ne
+anketa ne -u https://vozdovac.rs/anketa
 ```
 
 ## How to use
@@ -29,7 +38,7 @@ Usage: `anketa <vote> [options]`
 Options:
 ```
   -V, --version              output the version number
-  -u, --url [url]            Page url (default: "https://vozdovac.rs/anketa")
+  -u, --url <url>            Page url (required)
   -v, --votes [votes]        Number of votes, default 12 (default: 12)
   -t, --timeout [timeout]    Time to wait after page load, default 10, in seconds (default: 10)
   -r, --response [response]  Time to wait for form response, default 10, in seconds (default: 10)
@@ -39,5 +48,5 @@ Options:
   -h, --help                 output usage information
 ```
 
-###The only required param is `vote`.
+###The only required params are `vote` and `-u <url>`.
 
