@@ -1,9 +1,9 @@
 {
   "name": "@draganfilipovic/anketa",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "NodeJs script for totalpoll",
   "author": "Dragan Filipovic",
-  "license": "Apache Licence 2.0",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com:easingthemes/anketa.git"
