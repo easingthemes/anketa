@@ -1,6 +1,6 @@
 {
   "name": "@draganfilipovic/anketa",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "NodeJs script for totalpoll",
   "author": "Dragan Filipovic",
   "license": "Apache-2.0",
@@ -18,8 +18,8 @@
     "anketa": "bin/cli.js"
   },
   "scripts": {
-    "cli": "node bin/cli ne",
-    "debug": "node $NODE_DEBUG_OPTION bin/cli ne"
+    "cli": "node bin/cli ne -u https://vozdovac.rs/anketa",
+    "debug": "node $NODE_DEBUG_OPTION bin/cli ne -u https://vozdovac.rs/anketa -l 4"
   },
   "dependencies": {
     "commander": "^2.19.0",

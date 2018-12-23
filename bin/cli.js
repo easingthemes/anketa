@@ -2,18 +2,19 @@
 const program = require('commander');
 const validUrl = require('valid-url');
 const init = require('../index');
+const pkg = require('../package.json');
 
 console.log(`NODE JS process version is: ${process.version}`);
 
 let voteValue = '';
 
 program
-  .version('1.0.0')
+  .version(pkg.version)
   .arguments('<vote>')
   .option('-u, --url <url>', 'Page url (required)')
   .option('-v, --votes [votes]', 'Number of votes, default 100', parseInt, 100)
-  .option('-t, --timeout [timeout]', 'Time to wait after page load, default 10, in seconds', parseInt, 10)
-  .option('-r, --response [response]', 'Time to wait for form response, default 10, in seconds', parseInt, 10)
+  .option('-t, --timeout [timeout]', 'Time to wait after page load, default 30, in seconds', parseInt, 30)
+  .option('-r, --response [response]', 'Time to wait for form response, default 30, in seconds', parseInt, 30)
   .option('-l, --limit [limit]', 'Limit number of browsers to open at once, default 10', parseInt, 10)
   .option('-c, --cookie [cookie]', 'Name of the cookie, default `tpc_1539354118305`', 'tpc_1539354118305')
   .option('-h, --headless [headless]', 'is browser headless, default true', true)

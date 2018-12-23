@@ -45,7 +45,7 @@ const handlePage = async (vote, options, i) => {
   try {
     page = await browser.newPage();
   } catch (error) {
-    console.error('ERROR: opening url ...', i);
+    console.error('ERROR: opening url ...', i, error.message);
     return;
   }
 
@@ -56,7 +56,7 @@ const handlePage = async (vote, options, i) => {
     });
     console.log('PAGE: loaded', i);
   } catch (error) {
-    console.error('ERROR: opening page ...', i);
+    console.error('ERROR: opening page ...', i, error.message);
     await handlePageClose(page, browser,  i);
     return;
   }
@@ -66,7 +66,7 @@ const handlePage = async (vote, options, i) => {
     await page.click(selector);
     console.log('ELEMENT: choice Element clicked', i);
   } catch (error) {
-    console.error('ERROR: clicking choice element ...', i);
+    console.error('ERROR: clicking choice element ...', i, error.message);
     await handlePageClose(page, browser,  i);
     return;
   }
@@ -75,7 +75,7 @@ const handlePage = async (vote, options, i) => {
     await page.click('.totalpoll-button-vote');
     console.log('ELEMENT: Submit Element clicked', i);
   } catch (error) {
-    console.error('ERROR: clicking submit element ...', i);
+    console.error('ERROR: clicking submit element ...', i, error.message);
     await handlePageClose(page, browser,  i);
     return;
   }
@@ -84,7 +84,7 @@ const handlePage = async (vote, options, i) => {
     await page.waitForSelector('.totalpoll-choice-votes-text', { timeout: options.response * 1000 });
     console.log('ELEMENT: Response received', i);
   } catch (error) {
-    console.error('ERROR: receiving response ...', i);
+    console.error('ERROR: receiving response ...', i, error.message);
     await handlePageClose(page, browser,  i);
     return;
   }
@@ -93,7 +93,7 @@ const handlePage = async (vote, options, i) => {
     page.deleteCookie({name: options.cookie});
     console.log('COOKIE: Cookie deleted', i);
   } catch (error) {
-    console.error('ERROR: deleting cookie ...', i);
+    console.error('ERROR: deleting cookie ...', i, error.message);
     await handlePageClose(page, browser,  i);
     return;
   }
@@ -105,7 +105,7 @@ const handlePage = async (vote, options, i) => {
 
 const init = async (vote, options) => {
   if (!vote || !options) {
-    console.log('INPUT options error...');
+    console.log('INPUT options error...', vote, options);
     process.exit(1);
   }
 
@@ -118,9 +118,17 @@ const init = async (vote, options) => {
   const groups = chunkArray(totalArr, options.limit);
 
   for (const group of groups) {
-    await Promise.all(group.map(async (i) => {
+    const results = await Promise.all(group.map(async (i) => {
       await handlePage(vote, options, i);
     }));
+
+    const result = results.filter(r => r);
+    console.log('GROUP: ', result.length, result);
+
+    if (!result || result.length === 0) {
+      console.log('ERROR: Page is probably broken, too much error responses. Exiting ...');
+      break;
+    }
   }
   
   console.log('NODEJS: exiting process ...');
