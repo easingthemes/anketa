@@ -17,11 +17,6 @@ Page is probably broken, so there is no response. Please stop script manually:
 CTRL + c
 ```
 
-## Usage (without install)
-```
-npx @draganfilipovic/anketa ne -u https://vozdovac.rs/anketa
-```
-
 ## Install
 ```
 npm i @draganfilipovic/anketa -g
@@ -30,6 +25,11 @@ npm i @draganfilipovic/anketa -g
 ## Run
 ```
 anketa ne -u https://vozdovac.rs/anketa
+```
+
+## Usage (without install)
+```
+npx @draganfilipovic/anketa ne -u https://vozdovac.rs/anketa
 ```
 
 ## How to use
