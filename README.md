@@ -4,8 +4,13 @@ Headless browser nodejs script
 ## Requirement
 NodeJs v8+
 
+## Usage (without install)
+```
+npx @draganfilipovic/anketa ne
+```
+
 ## Install
-```$xslt
+```
 npm i @draganfilipovic/anketa -g
 ```
 
@@ -18,7 +23,7 @@ anketa ne
 Usage: `anketa <vote> [options]`
 
 Options:
-```$xslt
+```
   -V, --version              output the version number
   -u, --url [url]            Page url (default: "https://vozdovac.rs/anketa")
   -v, --votes [votes]        Number of votes, default 12 (default: 12)
