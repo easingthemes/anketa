@@ -111,7 +111,7 @@ const init = async (vote, options) => {
 
   options.browserConfig = getBrowserConfig(options.headless);
 
-  process.setMaxListeners(options.limit + 2);
+  process.setMaxListeners(options.total + 10);
   console.log('NODEJS: ', process.version);
 
   const totalArr = [...Array(options.total).keys()];
