@@ -4,6 +4,9 @@ Headless browser nodejs script
 ## Requirement
 NodeJs v8+
 
+## Info
+During first install/usage additional time is needed in order to download Chromium.
+
 ## Usage (without install)
 ```
 npx @draganfilipovic/anketa ne
