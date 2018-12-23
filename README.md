@@ -5,7 +5,8 @@ Headless browser nodejs script
 NodeJs v8+
 
 ## Info
-During first install/usage additional time is needed in order to download Chromium.
+During first install additional time is needed in order to download Chromium.
+If you use it without install (with npx), Chromium will be downloaded each time.
 
 ## Usage (without install)
 ```
