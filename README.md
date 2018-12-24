@@ -4,8 +4,12 @@ Headless browser nodejs script
 ## Requirement
 NodeJs v8+
 
+How to install -> https://nodejs.org/en/download/
+
+
 ## Info
 During first install additional time is needed in order to download Chromium.
+
 If you use it without install (with npx), Chromium will be downloaded each time.
 
 If you see a lot of errors when opening a page:
@@ -25,6 +29,17 @@ npm i @draganfilipovic/anketa -g
 ## Run
 ```
 anketa ne -u https://example.com/anketa
+```
+
+## With params
+- Add 10000 votes
+```
+anketa ne -u https://example.com/anketa -v 10000
+```
+
+- Speed up, increase simultaneous browsers.
+```
+anketa ne -u https://example.com/anketa -v 10000 -l 40
 ```
 
 ## Usage (without install)
